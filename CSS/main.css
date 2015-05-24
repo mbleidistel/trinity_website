@@ -1,0 +1,112 @@
+body
+{
+    margin: 0px;
+    min-width: 1024px;
+}
+
+.standardButton
+{
+    top: 100px;
+    left: 100px;
+    width: 100px;
+    height: 50px;
+}
+
+.outlineButton
+{
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border-radius: 5px;
+    cursor:pointer;
+    overflow: hidden;
+    outline:none;
+    font-family: arial;
+    font-size: 15px;
+    /*-o-transition: .5s;
+    -ms-transition: .5s;
+    -moz-transition: .5s;
+    -webkit-transition: .5s;*/
+    transition: .5s;
+}
+
+.whiteColor
+{
+    border: 2px solid white;
+    color: white;
+}
+
+.blackColor
+{
+    border: 2px solid black;
+    color: black;
+}
+
+.outlineButton.whiteColor:hover
+{
+    border: 2px solid blue;
+    color: blue;
+}
+
+.outlineButton.blackColor:hover
+{
+    border: 2px solid red;
+    color: red;
+}
+
+.transitionanimations
+{
+    /*-o-transition: .5s;
+    -ms-transition: .5s;
+    -moz-transition: .5s;
+    -webkit-transition: .5s;*/
+    transition: .5s;
+}
+
+.halo
+{
+    -ms-filter: drop-shadow(0px 1px 7px rgba(0,0,0,0.5));
+    -webkit-filter: drop-shadow(0px 1px 7px rgba(0,0,0,0.5));
+    filter: url(shadow.svg#drop-shadow);
+}
+
+.haloGray
+{
+    -ms-filter: drop-shadow(0px 1px 7px rgba(128,128,128,0.5));
+    -webkit-filter: drop-shadow(0px 1px 7px rgba(128,128,128,0.5));
+    filter: url(shadow.svg#drop-shadow);
+}
+
+.haloWhite
+{
+    -ms-filter: drop-shadow(0px 1px 7px rgba(255,255,255,0.5));
+    -webkit-filter: drop-shadow(0px 1px 7px rgba(255,255,255,0.5));
+    filter: url(shadow.svg#drop-shadow);
+}
+
+.haloWhiteTight
+{
+    -ms-filter: drop-shadow(0px 1px 1px rgba(255,255,255,1));
+    -webkit-filter: drop-shadow(0px 1px 1px rgba(255,255,255,1));
+    filter: url(shadow.svg#drop-shadow);
+}
+
+.drop-shadow
+{
+    -ms-filter: drop-shadow(3px 3px 1px rgba(0,0,0,0.5));
+    -webkit-filter: drop-shadow(3px 3px 1px rgba(0,0,0,0.5));
+    filter: url(shadow.svg#drop-shadow);
+}
+
+.drop-shadowGray
+{
+    -ms-filter: drop-shadow(3px 3px 1px rgba(128,128,128,0.5));
+    -webkit-filter: drop-shadow(3px 3px 1px rgba(128,128,128,0.5));
+    filter: url(shadow.svg#drop-shadow);
+}
+
+.drop-shadowWhite
+{
+    -ms-filter: drop-shadow(3px 3px 1px rgba(255,255,255,0.5));
+    -webkit-filter: drop-shadow(3px 3px 1px rgba(255,255,255,0.5));
+    filter: url(shadow.svg#drop-shadow);
+}
