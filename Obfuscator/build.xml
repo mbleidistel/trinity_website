@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<project name="Obfuscation" default="obfuscate">
+    <target name="obfuscate" description="runs obfuscator on http://www.javascriptobfuscator.com">
+        <echo message="Obfuscation Process"/>
+        <echo message="-------------------"/>
+        <exec executable="/usr/local/bin/phantomjs" failonerror="true" osfamily='unix'>
+            <arg value="obfuscator-runner.js"/>
+            <arg value="${source}"/>
+            <arg value="${target}"/>
+        </exec>
+        <exec executable="C:\Program Files (x86)\phantomjs\phantomjs.exe" failonerror="true" osfamily='windows'>
+            <arg value="obfuscator-runner.js"/>
+            <arg value="${source}"/>
+            <arg value="${target}"/>
+        </exec>
+    </target>
+</project>
