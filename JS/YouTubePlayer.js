@@ -4,7 +4,7 @@ var TARGET_ID = null;
 //    after the API code downloads.
 function onYouTubeIframeAPIReady() {
 	youtubeplayer = new YT.Player(TARGET_ID, {
-		height: '500',
+		height: '499',
 		width: '728',
 		videoId: VIDEO_ID,
 		events: {
@@ -26,7 +26,11 @@ function onPlayerReady(event) {
 var done = false;
 function onPlayerStateChange(event) {
 	if (event.data == YT.PlayerState.PLAYING && !done) {
-		setTimeout(stopVideo, 86000);
+		setTimeout(function()
+		{
+			stopVideo();
+			Background.fadeIn();
+		}, 85000);
 		done = true;
 	}
 }
@@ -43,7 +47,6 @@ function stopVideo()
 	if ( typeof(youtubeplayer) == 'object' )
 	{
 		youtubeplayer.stopVideo();
-		//Background.fadeIn();
 		VideoDiv.fadeOut();
 	}
 }
