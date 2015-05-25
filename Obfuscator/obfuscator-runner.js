@@ -69,7 +69,7 @@ else
 		console.log("Attempting to read Settings from " + config);
 	}
 
-	page.open( access, function()
+	page.open( access, function(status)
 	{
 		if ( status == 'success')
 		{
