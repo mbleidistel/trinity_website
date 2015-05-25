@@ -7,11 +7,13 @@
             <arg value="obfuscator-runner.js"/>
             <arg value="${source}"/>
             <arg value="${target}"/>
+            <arg value="${configuration}"/>
         </exec>
         <exec executable="C:\Program Files (x86)\phantomjs\phantomjs.exe" failonerror="true" osfamily='windows'>
             <arg value="obfuscator-runner.js"/>
             <arg value="${source}"/>
             <arg value="${target}"/>
+            <arg value="${configuration}"/>
         </exec>
     </target>
 </project>

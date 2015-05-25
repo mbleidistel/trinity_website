@@ -10,16 +10,21 @@ var Settings =
 var system = require('system');
 var page = null, source = null, target = null, written = false, NetworkError = 0, Counter = 0;
 
-if (system.args.length !== 3)
+if (system.args.length < 3)
 {
-	console.log('Usage: phantomjs obfuscator-runner.js source {target}');
+	console.log('Usage: phantomjs obfuscator-runner.js source {target} {URLToConfiguration.json}');
 	phantom.exit(1);
 }
 else
 {
 	page = require('webpage').create();
 	source = system.args[1];
+	//console.log("source " + source);
 	target = system.args[2];
+	//console.log("target " + target);
+	config = system.args[3];
+	//console.log("config " + config);
+	access = "";
 
 	if (source === "" || source === "${source}")
 	{
@@ -30,17 +35,54 @@ else
 		console.log("Using source as target");
 		target = source;
 	}
-
+	if (config === "" || config === "${config}")
+	{
+		console.log("");
+		console.log("Using default http://maps.i-openapps.com/ObfuscatorConfiguration.json with default username and password to access configuration");
+		config = "http://www.cyberdyne-systems.com/ObfuscatorConfiguration.json";
+		access = "http://www.cyberdyne-systems.com/ObfuscatorConfiguration.json";
+	}
+	else
+	{
+		// We have a value in config. In order not to show the provided username and password, build the access and config new here
+		var URLArray = config.split('@');
+		if ( URLArray.length > 1 )
+		{
+			// Apparently, we have an @ in the URL, so split off the Username:Password from the first part of the URLArray
+			var array = URLArray[0].split('//');
+			// Use the http or https from the array with the second part of the URLArray for the config
+			config = array[0] + "//" + URLArray[1];
+			//console.log("Our config URL is " + config);
+			// Use the http or https from the array, with the Username:Password from the seconds part of the array with the second part of the URL from URLArray for the access
+			access = array[0] + "//" + array[1] + "@" + URLArray[1];
+			//console.log("Our access URL is " + access);
+			console.log("");
+			console.log("Username and Password located in URL to JSON Configuration file");
+		}
+		else
+		{
+			// Use the configuration as access, since there was no password
+			access = config;
+		}
+	}
 
 	console.log("");
-	console.log("Attempting to read Settings from http://maps.i-openapps.com/ObfuscatorConfiguration.json");
+	console.log("Attempting to read Settings from " + config);
 
-	page.open("http://MobileMapDemoUser:MapFall20!2@maps.i-openapps.com/ObfuscatorConfiguration.json", function()
+	page.open( access, function()
 	{
-		var jsonText = page.plainText;
-		Settings = JSON.parse(jsonText);
-		console.log("");
-		console.log("Retrieved and parsed settings");
+		if ( status == 'success')
+		{
+			var jsonText = page.plainText;
+			Settings = JSON.parse(jsonText);
+			console.log("");
+			console.log("Retrieved and parsed settings");
+		}
+		else
+		{
+			console.log("");
+			console.log("Failed to retrieve settings. Using defaults");
+		}
 
 		obfuscate();
 	});
@@ -55,6 +97,13 @@ else
 			if (status == 'success')
 			{
 				var fs = require('fs');
+
+				if ( !fs.exists(source) )
+				{
+					console.log("");
+					console.log("Source " + source + " could not be opened, aborting obfuscation");
+					phantom.exit(1);
+				}
 
 				// Read the file
 				var reader = fs.open(source, "r");
