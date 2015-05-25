@@ -35,7 +35,7 @@ else
 		console.log("Using source as target");
 		target = source;
 	}
-	if (config === "" || config === "${config}")
+	if (config === "" || config === "${configuration}")
 	{
 		console.log("");
 		console.log("Using default http://maps.i-openapps.com/ObfuscatorConfiguration.json with default username and password to access configuration");
