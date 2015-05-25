@@ -64,10 +64,10 @@ else
 			// Use the configuration as access, since there was no password
 			access = config;
 		}
-	}
 
-	console.log("");
-	console.log("Attempting to read Settings from " + config);
+		console.log("");
+		console.log("Attempting to read Settings from " + config);
+	}
 
 	page.open( access, function()
 	{
