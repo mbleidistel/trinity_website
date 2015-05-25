@@ -228,7 +228,7 @@ function Init()
 		{
 			YouTubePlayer('YouTubePlayer', 'Or1el9SHNpk');
 		});
-	}, 1000);
+	}, 5000);
 
 	// Catch Resize event
 	$(window).resize(function()
