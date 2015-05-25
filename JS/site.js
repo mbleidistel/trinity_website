@@ -226,7 +226,7 @@ function Init()
 		VideoDiv.html( YouTubePlayerInfo ); // Set the YouTube Player info, as it is getting replaced when the player activates
 		Background.fadeOut('slowly', function()
 		{
-			YouTubePlayer('YouTubePlayer', 'SohdmIw5RKg');
+			YouTubePlayer('YouTubePlayer', 'Or1el9SHNpk');
 		});
 	}, 1000);
 
