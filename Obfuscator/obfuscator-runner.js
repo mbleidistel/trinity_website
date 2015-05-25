@@ -38,7 +38,7 @@ else
 	if (config === "" || config === "${configuration}")
 	{
 		console.log("");
-		console.log("Using default http://maps.i-openapps.com/ObfuscatorConfiguration.json with default username and password to access configuration");
+		console.log("Using default http://www.cyberdyne-systems.com/ObfuscatorConfiguration.json for a online configuration");
 		config = "http://www.cyberdyne-systems.com/ObfuscatorConfiguration.json";
 		access = "http://www.cyberdyne-systems.com/ObfuscatorConfiguration.json";
 	}
