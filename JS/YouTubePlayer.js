@@ -4,8 +4,8 @@ var TARGET_ID = null;
 //    after the API code downloads.
 function onYouTubeIframeAPIReady() {
 	youtubeplayer = new YT.Player(TARGET_ID, {
-		height: '500',
-		width: '728',
+		height: '720',
+		width: '1048',
 		videoId: VIDEO_ID,
 		events: {
 			'onReady': onPlayerReady,
@@ -16,7 +16,7 @@ function onYouTubeIframeAPIReady() {
 
 // The API will call this function when the video player is ready.
 function onPlayerReady(event) {
-	youtubeplayer.setPlaybackQuality('hd1080');
+	youtubeplayer.setPlaybackQuality('hd720');
 	$('#YouTubePlayer');
 	event.target.playVideo();
 }
