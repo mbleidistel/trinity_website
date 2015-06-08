@@ -66,47 +66,46 @@ body
 {
     -ms-filter: drop-shadow(0px 1px 7px rgba(0,0,0,0.5));
     -webkit-filter: drop-shadow(0px 1px 7px rgba(0,0,0,0.5));
-    filter: url(shadow.svg#drop-shadow);
+    filter: drop-shadow(0px 1px 7px rgba(0,0,0,0.5));
 }
 
 .haloGray
 {
     -ms-filter: drop-shadow(0px 1px 7px rgba(128,128,128,0.5));
     -webkit-filter: drop-shadow(0px 1px 7px rgba(128,128,128,0.5));
-    filter: url(shadow.svg#drop-shadow);
+    filter: drop-shadow(0px 1px 7px rgba(128,128,128,0.5));
 }
 
 .haloWhite
 {
     -ms-filter: drop-shadow(0px 1px 7px rgba(255,255,255,0.5));
     -webkit-filter: drop-shadow(0px 1px 7px rgba(255,255,255,0.5));
-    filter: url(shadow.svg#drop-shadow);
-}
+    filter: drop-shadow(0px 1px 7px rgba(255,255,255,0.5));
 
 .haloWhiteTight
 {
     -ms-filter: drop-shadow(0px 1px 1px rgba(255,255,255,1));
     -webkit-filter: drop-shadow(0px 1px 1px rgba(255,255,255,1));
-    filter: url(shadow.svg#drop-shadow);
+    filter: drop-shadow(0px 1px 1px rgba(255,255,255,1));
 }
 
 .drop-shadow
 {
     -ms-filter: drop-shadow(3px 3px 1px rgba(0,0,0,0.5));
     -webkit-filter: drop-shadow(3px 3px 1px rgba(0,0,0,0.5));
-    filter: url(shadow.svg#drop-shadow);
+    filter: drop-shadow(3px 3px 1px rgba(0,0,0,0.5));
 }
 
 .drop-shadowGray
 {
     -ms-filter: drop-shadow(3px 3px 1px rgba(128,128,128,0.5));
     -webkit-filter: drop-shadow(3px 3px 1px rgba(128,128,128,0.5));
-    filter: url(shadow.svg#drop-shadow);
+    filter: drop-shadow(3px 3px 1px rgba(128,128,128,0.5));
 }
 
 .drop-shadowWhite
 {
     -ms-filter: drop-shadow(3px 3px 1px rgba(255,255,255,0.5));
     -webkit-filter: drop-shadow(3px 3px 1px rgba(255,255,255,0.5));
-    filter: url(shadow.svg#drop-shadow);
+    filter: drop-shadow(3px 3px 1px rgba(255,255,255,0.5));
 }
