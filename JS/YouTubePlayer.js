@@ -1,14 +1,16 @@
 var VIDEO_ID = null;
 var TARGET_ID = null;
+var Quality = 480;
 // This function creates an <iframe> (and YouTube player)
 //    after the API code downloads.
 function onYouTubeIframeAPIReady() {
 	youtubeplayer = new YT.Player(TARGET_ID, {
-		height: '720',
-		width: '1048',
+		height: Quality,
+		width: "" + parseInt(Quality * 1.455555555555555556),
 		videoId: VIDEO_ID,
 		events: {
 			'onReady': onPlayerReady,
+			'onPlaybackQualityChange': onPlayerPlaybackQualityChange,
 			'onStateChange': onPlayerStateChange
 		}
 	});
@@ -16,16 +18,20 @@ function onYouTubeIframeAPIReady() {
 
 // The API will call this function when the video player is ready.
 function onPlayerReady(event) {
-	youtubeplayer.setPlaybackQuality('hd720');
 	$('#YouTubePlayer');
 	event.target.playVideo();
 }
 
+function onPlayerPlaybackQualityChange(event)
+{
+	event.target.setPlaybackQuality('hd' + Quality)
+}
 // The API calls this function when the player's state changes.
 // The function indicates that when playing a video (state=1),
 // the player should play for six seconds and then stop.
 var done = false;
 function onPlayerStateChange(event) {
+	youtubeplayer.setPlaybackQuality('hd' + Quality);
 	if (event.data == YT.PlayerState.PLAYING && !done) {
 		setTimeout(function()
 		{
