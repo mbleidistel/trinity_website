@@ -57,7 +57,7 @@ function startBackgroundAnimation()
 				// Reset the counter
 				if ( counter >= files.length )
 					counter = 0;
-			}, 5000);
+			}, 15000);
 		})(files, counter);
 	});
 }
