@@ -1,3 +1,5 @@
+var frontPageAnimationInterval = null;
+
 function delayedDisplay(DelayInSecs, Callback)
 {
 	var Timeout = null;
@@ -10,6 +12,63 @@ function delayedDisplay(DelayInSecs, Callback)
 				Callback();
 		}, DelayInSecs*1000);
 	})(Timeout, DelayInSecs, Callback);
+}
+
+function getFileListArray(URL, Callback)
+{
+	if ( URL.slice(-1) != '/')
+		URL += "/";
+
+	jQuery.getJSON(URL + 'getFiles.php', function(files)
+	{
+		var _files = [];
+		for ( var i=0; i < files.length; i++ )
+		{
+			if ( files[i] == 'getFiles.php')
+				continue;
+
+			var file = {};
+			file.fileURL = URL + files[i];
+			file.filename = files[i];
+			_files.push(file);
+		}
+
+		if ( Callback && typeof(Callback) == 'function' )
+			Callback(_files);
+	});
+}
+
+function startBackgroundAnimation()
+{
+	getFileListArray('Images/Frontpage', function(files)
+	{
+		if ( files.length <= 1 )
+			return;
+		
+		var counter = 0;
+		(function(files, counter)
+		{
+			if ( frontPageAnimationInterval )
+				stopFrontPageAnimation();
+
+			frontPageAnimationInterval = setInterval(function(){
+				var path = "url('" + files[counter++].fileURL + "')";
+				Background.css('background-image', path);
+				// Reset the counter
+				if ( counter >= files.length )
+					counter = 0;
+			}, 5000);
+		})(files, counter);
+	});
+}
+
+function stopBackgroundAnimation()
+{
+	if ( frontPageAnimationInterval )
+	{
+		clearInterval(frontPageAnimationInterval);
+		frontPageAnimationInterval = null;
+	}
 }
 
 function getImageObjectArrayEntry()

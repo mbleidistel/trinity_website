@@ -182,7 +182,8 @@ function Init()
 			Social.fadeIn('slowly');
 
 			// Declare the room for the image
-			Background = addDiv('Background', '140px', '0px', '100%', '74%').css({backgroundColor:'white'}).addClass('BackgroundImage').fadeIn('slowly');
+			Background = addDiv('Background', '140px', '0px', '100%', '74%').css({backgroundColor:'white'}).addClass('BackgroundImage').addClass('BackgroundAnimation').fadeIn('slowly');
+			startBackgroundAnimation();
 		});
 	});
 
