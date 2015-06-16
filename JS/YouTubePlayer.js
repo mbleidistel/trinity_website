@@ -55,6 +55,7 @@ function stopVideo()
 	{
 		youtubeplayer.stopVideo();
 		VideoDiv.fadeOut();
+		Background.fadeIn();
 	}
 }
 

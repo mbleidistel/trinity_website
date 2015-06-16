@@ -217,3 +217,8 @@ h1.green, h2.green, h3.green, span.green
 {
     color: #5F9000;
 }
+
+a.red-hover:hover
+{
+    color: red;
+}

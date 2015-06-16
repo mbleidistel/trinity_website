@@ -215,7 +215,7 @@ function Init()
 
 	// Create VideoDIV
 	VideoDiv = addDiv('Video', '160px', undefined, '100%', '70%').css({border: '0px solid lime', zIndex:1});//.show();
-	var YouTubePlayerInfo = "<center><div id='YouTubePlayer'></div></center>";
+	var YouTubePlayerInfo = "<center><div id='YouTubePlayer'></div><br><div><a onclick='stopVideo();' class='CopyrightFont red-hover'>Skip Video</a></div></center>";
 
 	// Create iFrameDiv
 	iFrameDiv = addDiv('iFrame', '152px', undefined, '100%', '71%').css({border: '0px solid lime', zIndex:1});//.show();
