@@ -182,8 +182,7 @@ function Init()
 			Social.fadeIn('slowly');
 
 			// Declare the room for the image
-			Background = addDiv('Background', '140px', '0px', '100%', '74%').css({backgroundColor:'white'}).addClass('BackgroundImage').addClass('BackgroundAnimation').fadeIn('slowly');
-			startBackgroundAnimation();
+			Background = addDiv('Background', '140px', '0px', '100%', '74%').css({backgroundColor:'white'}).addClass('BackgroundImage').addClass('BackgroundAnimation');//.fadeIn('slowly');
 		});
 	});
 
@@ -215,21 +214,20 @@ function Init()
 
 	// Create VideoDIV
 	VideoDiv = addDiv('Video', '160px', undefined, '100%', '70%').css({border: '0px solid lime', zIndex:1});//.show();
-	var YouTubePlayerInfo = "<center><div id='YouTubePlayer'></div><br><div><a onclick='stopVideo();' class='CopyrightFont red-hover'>Skip Video</a></div></center>";
+	var YouTubePlayerInfo = "<center><div id='YouTubePlayer'></div><br><div id='StopVideoLink'></div></center>";
 
 	// Create iFrameDiv
 	iFrameDiv = addDiv('iFrame', '152px', undefined, '100%', '71%').css({border: '0px solid lime', zIndex:1});//.show();
 
 	// Show the intro video after 3 seconds of hitting the page
-	videoTimeout = setTimeout(function()
-	{
-		VideoDiv.fadeIn('slowly');
-		VideoDiv.html( YouTubePlayerInfo ); // Set the YouTube Player info, as it is getting replaced when the player activates
-		Background.fadeOut('slowly', function()
+	//videoTimeout = setTimeout(function()
+	//{
+		VideoDiv.fadeIn(function()
 		{
+			VideoDiv.html( YouTubePlayerInfo ); // Set the YouTube Player info, as it is getting replaced when the player activates
 			YouTubePlayer('YouTubePlayer', 'Or1el9SHNpk');
 		});
-	}, 5000);
+	//}, 500);
 
 	// Catch Resize event
 	$(window).resize(function()

@@ -1,6 +1,8 @@
 var VIDEO_ID = null;
 var TARGET_ID = null;
 var Quality = 480;
+var videoTimeout = null;
+
 // This function creates an <iframe> (and YouTube player)
 //    after the API code downloads.
 function onYouTubeIframeAPIReady() {
@@ -20,6 +22,7 @@ function onYouTubeIframeAPIReady() {
 function onPlayerReady(event) {
 	$('#YouTubePlayer');
 	event.target.playVideo();
+	$('#StopVideoLink').html("<a onclick='stopVideo();' class='CopyrightFont red-hover'>Skip Video</a>");
 }
 
 function onPlayerPlaybackQualityChange(event)
@@ -29,16 +32,14 @@ function onPlayerPlaybackQualityChange(event)
 // The API calls this function when the player's state changes.
 // The function indicates that when playing a video (state=1),
 // the player should play for six seconds and then stop.
-var done = false;
 function onPlayerStateChange(event) {
 	youtubeplayer.setPlaybackQuality('hd' + Quality);
-	if (event.data == YT.PlayerState.PLAYING && !done) {
-		setTimeout(function()
-		{
-			stopVideo();
-			Background.fadeIn();
-		}, 85000);
-		done = true;
+	if (event.data == YT.PlayerState.PLAYING)
+	{
+	}
+	if (event.data == YT.PlayerState.ENDED)
+	{
+		stopVideo();
 	}
 }
 
@@ -54,8 +55,13 @@ function stopVideo()
 	if ( typeof(youtubeplayer) == 'object' )
 	{
 		youtubeplayer.stopVideo();
-		VideoDiv.fadeOut();
-		Background.fadeIn();
+		VideoDiv.fadeOut(function()
+		{
+			Background.fadeIn(function()
+			{
+				startBackgroundAnimation();
+			});
+		});
 	}
 }
 
