@@ -60,7 +60,8 @@ function Init()
 			}
 
 			// Just in case
-			stopVideo();
+			//stopYoutubeVideo();
+			stopVimeoVideo();
 			TargetDiv.fadeOut();
 			InfoDiv.fadeOut();
 			iFrameDiv.fadeOut();
@@ -215,6 +216,7 @@ function Init()
 	// Create VideoDIV
 	VideoDiv = addDiv('Video', '160px', undefined, '100%', '70%').css({border: '0px solid lime', zIndex:1});//.show();
 	var YouTubePlayerInfo = "<center><div id='YouTubePlayer'></div><br><div id='StopVideoLink'></div></center>";
+	var VimeoPlayerInfo = "<center><div id='VimeoPlayer'></div><br><div id='StopVideoLink'></div></center>";
 
 	// Create iFrameDiv
 	iFrameDiv = addDiv('iFrame', '152px', undefined, '100%', '71%').css({border: '0px solid lime', zIndex:1});//.show();
@@ -224,8 +226,10 @@ function Init()
 	//{
 		VideoDiv.fadeIn(function()
 		{
-			VideoDiv.html( YouTubePlayerInfo ); // Set the YouTube Player info, as it is getting replaced when the player activates
-			YouTubePlayer('YouTubePlayer', 'hpaDvtFXPNs');
+			VideoDiv.html( VimeoPlayerInfo );
+			VimeoPlayer('VimeoPlayer', '131046134');
+			//VideoDiv.html( YouTubePlayerInfo ); // Set the YouTube Player info, as it is getting replaced when the player activates
+			//YouTubePlayer('YouTubePlayer', 'hpaDvtFXPNs');
 		});
 	//}, 500);
 

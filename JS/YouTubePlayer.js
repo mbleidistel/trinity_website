@@ -22,7 +22,7 @@ function onYouTubeIframeAPIReady() {
 function onPlayerReady(event) {
 	$('#YouTubePlayer');
 	event.target.playVideo();
-	$('#StopVideoLink').html("<a onclick='stopVideo();' class='CopyrightFont red-hover'>Skip Video</a>");
+	$('#StopVideoLink').html("<a onclick='stopYoutubeVideo();' class='CopyrightFont red-hover'>Skip Video</a>");
 }
 
 function onPlayerPlaybackQualityChange(event)
@@ -39,11 +39,11 @@ function onPlayerStateChange(event) {
 	}
 	if (event.data == YT.PlayerState.ENDED)
 	{
-		stopVideo();
+		stopYoutubeVideo();
 	}
 }
 
-function stopVideo()
+function stopYoutubeVideo()
 {
 	// Stop the video timeout
 	if ( videoTimeout )
