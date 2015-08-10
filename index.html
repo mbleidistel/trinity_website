@@ -20,26 +20,40 @@
 	<script src="superscrollorama/js/Callback.js"></script>
 </head>
 <body>
+	<!-- Piwik -->
+	<script type="text/javascript">
+		var _paq = _paq || [];
+		_paq.push(['trackPageView']);
+		_paq.push(['enableLinkTracking']);
+		(function() {
+			var u="//www.trinitypostandpanel.com/Piwik/";
+			_paq.push(['setTrackerUrl', u+'piwik.php']);
+			_paq.push(['setSiteId', 1]);
+			var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+			g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+		})();
+	</script>
+	<noscript><p><img src="//www.trinitypostandpanel.com/Piwik/piwik.php?idsite=1" style="border:0;" alt="" /></p></noscript>
+	<!-- End Piwik Code -->
+	<div id='Site' style="position:absolute; width:100%; min-width: 1024px; height:100%; z-index: -1;">
+	</div>
+	<img class="halo" src="Images/TrinityLogo.png" alt="" id="Logo" title="" style="position:absolute; top:9px; left:19px; transform:scale(.8)"/>
 
-<div id='Site' style="position:absolute; width:100%; min-width: 1024px; height:100%; z-index: -1;">
-</div>
-<img class="halo" src="Images/TrinityLogo.png" alt="" id="Logo" title="" style="position:absolute; top:9px; left:19px; transform:scale(.8)"/>
+	<div id='Copyright' class='haloWhiteTight' style='position:fixed; bottom:3%; width:54%; text-align: center'>
+		<span class="CopyrightFont" style="position: absolute; left:10%; bottom:3%;">
+			Copyright &#169; 2015 Trinity Post &#38; Panel Inc. &#174; All Rights Reserved.
+		</span>
 
-<div id='Copyright' class='haloWhiteTight' style='position:fixed; bottom:3%; width:54%; text-align: center'>
-	<span class="CopyrightFont" style="position: absolute; left:10%; bottom:3%;">
-		Copyright &#169; 2015 Trinity Post &#38; Panel Inc. &#174; All Rights Reserved.
-	</span>
+		<span class="CopyrightFont" style="position: absolute; right:-80%; bottom:3%">
+			+1-250-791-0028 / <a href="mailto:info@trinitypostandpanel.com" style="color:blue; text-decoration: none">info&#64;trinitypostandpanel.com</a>
+		</span>
+	</div>
 
-	<span class="CopyrightFont" style="position: absolute; right:-80%; bottom:3%">
-		+1-250-791-0028 / <a href="mailto:info@trinitypostandpanel.com" style="color:blue; text-decoration: none">info&#64;trinitypostandpanel.com</a>
-	</span>
-</div>
-
-<script type="text/javascript">
-	$(document).ready(function()
-	{
-		Init();
-	});
-</script>
+	<script type="text/javascript">
+		$(document).ready(function()
+		{
+			Init();
+		});
+	</script>
 </body>
 </html>
