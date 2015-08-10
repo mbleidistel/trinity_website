@@ -79,6 +79,12 @@ function stopVimeoVideo()
 function onFinish() {
 	//status.text('finished');
 	stopVimeoVideo();
+	/*
+	// Enable this too loop the video
+	setTimeout(function()
+	{
+		post('play');
+	}, 500);*/
 }
 
 function onPlayProgress(data) {
