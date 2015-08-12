@@ -233,6 +233,8 @@ function Init()
 		});
 	//}, 500);
 
+	PiwikTrackContent();
+	
 	// Catch Resize event
 	$(window).resize(function()
 	{

@@ -55,7 +55,7 @@ function post(action, value) {
 function onReady() {
 	//status.text('ready');
 
-	$('#StopVideoLink').html("<a onclick='stopVimeoVideo()' class='CopyrightFont red-hover'>Skip Video</a>");
+	$('#StopVideoLink').html("<a onclick='stopVimeoVideo(); PiwikEvent(\"Skip Video\");'  class='CopyrightFont red-hover'>Skip Video</a>");
 	//post('addEventListener', 'pause');
 	post('addEventListener', 'finish');
 	//post('addEventListener', 'playProgress');
