@@ -49,7 +49,7 @@ function startBackgroundAnimation()
 		(function(files, counter)
 		{
 			if ( frontPageAnimationInterval )
-				stopFrontPageAnimation();
+				stopBackgroundAnimation();
 
 			frontPageAnimationInterval = setInterval(function(){
 				var path = "url('" + files[counter++].fileURL + "')";
