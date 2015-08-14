@@ -50,9 +50,26 @@ function Init()
 
 		if ( event.currentTarget )
 		{
-			var URL = event.currentTarget.href.split('/');
-			URL = URL[URL.length-1];
-			var suffix = URL.substr(URL.lastIndexOf('.')+1).toLowerCase();
+			// Complete URL
+			var href = event.currentTarget.href;
+
+			var startIndex = 0;
+			// Is this a re-direct url?
+			if ( (startIndex = href.toLowerCase().indexOf('redirecturl=')) != -1 )
+			{
+				// Redirect
+				href = href.substr(startIndex); // Start copying from redirecturl=
+				href = href.substr(0, href.indexOf('&')); // Copy string until the next parameter
+				href = href.substr(href.indexOf('=') + 1); // Remove redirecturl=
+				href = decodeURIComponent(href);
+			}
+
+			// last part of path and suffix
+			var URL = href.split('/');
+			URL = URL[URL.length - 1];
+
+			// Just the suffix
+			var suffix = URL.substr(URL.lastIndexOf('.') + 1).toLowerCase();
 
 			if ( !suffix)
 			{
@@ -72,11 +89,14 @@ function Init()
 			{
 				case 'mail':
 					Background.fadeIn();
-					window.location.href = event.currentTarget.href.substr(0, event.currentTarget.href.indexOf('.mail'));
+					window.location.href = href.substr(0, href.indexOf('.mail'));
+					PiwikEvent("Menu", "Click", "mail");
 					break;
 
 				case "home":
 					Background.fadeIn();
+					// Record the page viewing
+					PiwikPageView("Homepage");
 					break;
 
 				case 'pdf':
@@ -89,6 +109,9 @@ function Init()
 					Background.fadeOut();
 					InfoDiv.fadeOut(function()
 					{
+						// Record the page viewing
+						PiwikPageView(URL.substr(0, URL.indexOf('.')));
+
 						createInfoScreenFor( '#Info', URL.substr(0, URL.indexOf('.')) );
 						InfoDiv.fadeIn();
 					});
@@ -97,6 +120,9 @@ function Init()
 				case 'iframe':
 					Background.fadeOut();
 					iFrameDiv.fadeIn();
+
+					// Record the page viewing
+					PiwikPageView(URL.substr(0, URL.indexOf('.')));
 
 					iFrameDiv.html("<iframe class='iframe-link' id='" + URL.killSpaces().killSpecialChars() + "' src='" + URL.substr(0, URL.indexOf('.')) + "'>");
 					iFrameInterval = setInterval(function(){
@@ -120,7 +146,9 @@ function Init()
 				case 'jpg':
 				case 'php':
 					Background.fadeIn();
-					$('#HTMLObject').attr('src', event.currentTarget.href);
+					$('#HTMLObject').attr('src', href);
+					// Record the page viewing
+					PiwikPageView(URL.substr(0, URL.indexOf('.')));
 					TargetDiv.fadeIn();
 					break;
 

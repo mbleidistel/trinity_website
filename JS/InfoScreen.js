@@ -97,7 +97,9 @@ function createInfoScreenFor(TargetSelector, URL)
 			var smallImages = "<center><table class='smallImageDivTable'><tr>";
 			for (var s=0; s < section.images.length; s++)
 			{
-				smallImages += "<td><img class='drop-shadow smallImage' src='" + section.images[s] + "' onclick='showImage(\"" + textElements[i].name + "_Images\",\"" + section.images[s] + "\")'></td>";
+				smallImages += "<td><img class='drop-shadow smallImage' src='" + section.images[s] + "' onclick='showImage(\"" + textElements[i].name + "_Images\",\"" + section.images[s] + "\");" +
+					"PiwikEvent(\"Image\", \"Click\", \"" + textElements[i].name + "\", \"" + section.images[s] + "\");" +
+					"PiwikPageView(\"" + textElements[i].name + " -> " + decodeURIComponent(section.images[s].substr(section.images[s].lastIndexOf('/') + 1)) + "\")'></td>";
 			}
 			smallImages += "</tr></table></center>";
 			// The image division itself

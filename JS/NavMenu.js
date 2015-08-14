@@ -14,7 +14,7 @@ function NavMenu()
 		href = href || "Images/under-construction.jpg";
 
 		// Add the item to the finished items
-		this._items.push( {title:title, code:["<li><a href='" +  href + "'>" + title + "</a></li>"]} );
+		this._items.push( {title:title, code:["<li><a onclick='PiwikEvent(\"MenuItem\", \"Click\", \"" + title + "\", \"" + href + "\");' href='" +  href + "'>" + title + "</a></li>"]} );
 	};
 
 	NavMenu.prototype.startSubMenu = function(title, href)
@@ -22,7 +22,7 @@ function NavMenu()
 		title = title || ("Menu " + this._items.length + 1);
 		href = href || "#";
 
-		this._items.push( {title:title, code:["<li><a href='" +  href + "'>" + title + "</a><ul>"]} );
+		this._items.push( {title:title, code:["<li><a onclick='PiwikEvent(\"Menu\", \"Click\", \"" + title + "\", \"" + href + "\");' href='" +  href + "'>" + title + "</a><ul>"]} );
 	};
 
 	NavMenu.prototype.endSubmenu = function()

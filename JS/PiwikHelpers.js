@@ -21,7 +21,16 @@ function PiwikEvent(Category, Action, Name, Value)
 
 	if ( Name != undefined && Value != undefined)
 		_paq.push(['trackEvent', Category, Action, Name, Value]);
+	else if ( Name != undefined && Value == undefined)
+		_paq.push(['trackEvent', Category, Action, Name]);
 	else
 		_paq.push(['trackEvent', Category, Action])
 }
 
+function PiwikPageView(Title)
+{
+	if ( Title != undefined )
+		_paq.push(['trackPageView', Title]);
+	else
+		_paq.push(['trackPageView']);
+}
