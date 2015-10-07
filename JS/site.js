@@ -212,6 +212,8 @@ function Init()
 
 			// Declare the room for the image
 			Background = addDiv('Background', '140px', '0px', '100%', '74%').css({backgroundColor:'white'}).addClass('BackgroundImage').addClass('BackgroundAnimation');//.fadeIn('slowly');
+			// Load the first image for the Background, whichever comes first
+			loadFirstBackgroundImage();
 		});
 	});
 

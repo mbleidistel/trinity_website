@@ -38,6 +38,39 @@ function getFileListArray(URL, Callback)
 	});
 }
 
+function loadFirstBackgroundImage(ImageURL)
+{
+	// Do we load an image by URL?
+	if ( typeof(ImageURL) == 'undefined' )
+	{
+		// No, get the filelist and use the first image in the list
+		getFileListArray('Images/Frontpage', function(files)
+		{
+			if (files.length <= 1)
+				return;
+
+			(function (files)
+			{
+				var file = files[0].fileURL;
+				$('<img/>').attr('src', file).load(function ()
+				{
+					$(this).remove(); // prevent memory leaks as @benweet suggested
+					Background.css('background-image', "url('" + file + "')");
+				});
+			})(files);
+		});
+	}
+	else
+	{
+		// Yes, load the specific image
+		$('<img/>').attr('src', ImageURL).load(function ()
+		{
+			$(this).remove(); // prevent memory leaks as @benweet suggested
+			Background.css('background-image', "url('" + ImageURL + "')");
+		});
+	}
+};
+
 function startBackgroundAnimation()
 {
 	getFileListArray('Images/Frontpage', function(files)
@@ -61,7 +94,7 @@ function startBackgroundAnimation()
 				// Reset the counter
 				if ( counter >= files.length )
 					counter = 0;
-			}, 15000);
+			}, 6000);
 		})(files, counter);
 	});
 }
