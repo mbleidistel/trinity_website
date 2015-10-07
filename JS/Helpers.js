@@ -52,8 +52,12 @@ function startBackgroundAnimation()
 				stopBackgroundAnimation();
 
 			frontPageAnimationInterval = setInterval(function(){
-				var path = "url('" + files[counter++].fileURL + "')";
-				Background.css('background-image', path);
+				var file = files[counter++].fileURL;
+				$('<img/>').attr('src', file).load(function() {
+					$(this).remove(); // prevent memory leaks as @benweet suggested
+					Background.css('background-image', "url('" + file + "')");
+				});
+
 				// Reset the counter
 				if ( counter >= files.length )
 					counter = 0;
