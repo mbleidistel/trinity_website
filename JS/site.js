@@ -212,6 +212,7 @@ function Init()
 
 			// Declare the room for the image
 			Background = addDiv('Background', '140px', '0px', '100%', '74%').css({backgroundColor:'white'}).addClass('BackgroundImage').addClass('BackgroundAnimation');//.fadeIn('slowly');
+			//Background.html("<div style='position: absolute; right: 1%; bottom: 0px;'><a style='text-decoration: none;' href='http://www.vancouverhomeanddesignshow.com' target='_blank'><img src='Images/VHDS15_WebButton_Static.jpg'/></a></div>");
 			// Load the first image for the Background, whichever comes first
 			loadFirstBackgroundImage();
 		});
