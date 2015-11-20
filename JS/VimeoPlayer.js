@@ -93,7 +93,11 @@ function onPlayProgress(data) {
 
 function VimeoPlayer(TargetID, VideoID)
 {
-	$('#' + TargetID).html("<iframe id='vimeo_player' src='https://player.vimeo.com/video/" + VideoID + "?color=ffffff&title=0&byline=0&portrait=0' width='698' height='480' frameborder='0' webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>")
+	if (screen.width <= 800) {
+		$('#' + TargetID).html("<iframe id='vimeo_player' src='https://player.vimeo.com/video/" + VideoID + "?color=ffffff&title=0&byline=0&portrait=0' width='200' height='132' frameborder='0' webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>")
+	} else {
+		$('#' + TargetID).html("<iframe id='vimeo_player' src='https://player.vimeo.com/video/" + VideoID + "?color=ffffff&title=0&byline=0&portrait=0' width='698' height='480' frameborder='0' webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>")
+	}
 	vimeoPlayer = $('#vimeo_player');
 	// Listen for messages from the player
 	if (window.addEventListener) {

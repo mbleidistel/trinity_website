@@ -2,7 +2,6 @@
     <div class="row">
         <div class="one-quarter meta">
             <div class="thumbnail">
-                <img src="<?php echo($post_image); ?>" alt="<?php echo($post_title); ?>" />
             </div>
 
             <ul>
