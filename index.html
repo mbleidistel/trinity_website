@@ -1,63 +1,498 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN""http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-	<title>Trinity website</title>
-	<meta http-equiv="Content-Type" content="text/html; charset=Windows-1252"/>
-	<script src='JS/jquery-1.11.2.min.js'></script>
-	<script src='JS/jquery-ui.min.js'></script>
-	<link rel='stylesheet' href='JS/jquery-ui.min.css'>
-	<link rel='stylesheet' href='JS/jquery-ui.structure.min.css'>
-	<link rel='stylesheet' href='JS/jquery-ui.theme.min.css'>
-	<script src='JS/Helpers.js'></script>
-	<link rel='stylesheet' href='CSS/main.css'>
-	<script src='JS/site.js'></script>
-	<script src='JS/InfoScreen.js'></script>
-	<link rel='stylesheet' href='CSS/main.css'>
-	<link rel='stylesheet' href='CSS/Site.css'>
-	<script type='text/javascript' src='JS/NavMenu.js'></script>
-	<link rel='stylesheet' href='JS/NavMenu.css'>
-	<script src="JS/VimeoPlayer.js"></script>
-	<script src="superscrollorama/js/Callback.js"></script>
-	<script src="JS/Piwik.js"></script>
-	<script src="JS/PiwikHelpers.js"></script>
-</head>
-<body>
-	<!-- Piwik -->
-	<script type="text/javascript">
-		var _paq = _paq || [];
-		_paq.push(['trackPageView']);
-		_paq.push(['enableLinkTracking']);
-		(function() {
-			var u="//stats.trinitypostandpanel.com/";
-			_paq.push(['setTrackerUrl', u+'piwik.php']);
-			_paq.push(['setSiteId', 1]);
-			var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-			g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
-		})();
-	</script>
-	<noscript><p><img src="//stats.trinitypostandpanel.com/piwik.php?idsite=1" style="border:0;" alt="" /></p></noscript>
-	<!-- End Piwik Code -->
-	<div id='Site' style="position:absolute; width:100%; min-width: 1024px; height:100%; z-index: -1;">
-	</div>
-	<img class="halo" src="Images/TrinityLogo.png" alt="" id="Logo" title="" style="position:absolute; top:9px; left:19px; transform:scale(.8)"/>
+<html><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="CSS.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="Cookie.js"></script>
+    <script type="text/javascript" src="CoverSlideshow.js"></script>
+  </head><body onload="checkForReload()">
+    <div hidden="" id="Social" style="position: fixed; bottom: 0px; left: -10px; width: 100%; height: 30px; display: block; z-index:1;">
+      <img id="Twitter" class="Social hidden-lg hidden-md hidden-sm hidden-xs" src="Images/twitter.png">
+      <a target="_blank" href="https://ca.linkedin.com/company/trinity-post-and-panel"><img id="LinkedIn" class="Social" src="Images/linkedin.png"></a>
+      <a target="_blank" href="https://www.facebook.com/pages/Trinity-Post-Panel-Inc/204070129628546"><img id="Facebook" class="Social" src="Images/facebook.png"></a>
+    </div>
+    <!-- Piwik -->
+    <script type="text/javascript">
+      var _paq = _paq || [];
+              // accurately measure the time spent on the last pageview of a visit
+              _paq.push(['enableHeartBeatTimer']);
+              _paq.push(['trackPageView']);
+              _paq.push(['trackVisibleContentImpressions', true, 750]);
+              _paq.push(['enableLinkTracking']);
+              (function() {
+                var u="//stats.trinitypostandpanel.com/";
+                _paq.push(['setTrackerUrl', u+'piwik.php']);
+                _paq.push(['setSiteId', 1]);
+                var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+                g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+              })();
+    </script>
+    <noscript>
+      <p>
+        <img src="//stats.trinitypostandpanel.com/piwik.php?idsite=1" style="border:0;" alt="">
+      </p>
+    </noscript>
+    <!-- End Piwik Code -->
+    <div class="newCover">
+      <div class="newNavbar" style="position:absolute; background-color:#5F9000 !important; z-index:1;height:65px;">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-ex-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand"><img height="60" alt="Brand" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN0AAABpCAYAAAC+nyZ5AAAAAXNSR0IArs4c6QAAAAlwSFlzAAAOxAAADsQBlSsOGwAABCZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IlhNUCBDb3JlIDUuNC4wIj4KICAgPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4KICAgICAgPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIKICAgICAgICAgICAgeG1sbnM6dGlmZj0iaHR0cDovL25zLmFkb2JlLmNvbS90aWZmLzEuMC8iCiAgICAgICAgICAgIHhtbG5zOmV4aWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20vZXhpZi8xLjAvIgogICAgICAgICAgICB4bWxuczpkYz0iaHR0cDovL3B1cmwub3JnL2RjL2VsZW1lbnRzLzEuMS8iCiAgICAgICAgICAgIHhtbG5zOnhtcD0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wLyI+CiAgICAgICAgIDx0aWZmOlJlc29sdXRpb25Vbml0PjI8L3RpZmY6UmVzb2x1dGlvblVuaXQ+CiAgICAgICAgIDx0aWZmOkNvbXByZXNzaW9uPjU8L3RpZmY6Q29tcHJlc3Npb24+CiAgICAgICAgIDx0aWZmOlhSZXNvbHV0aW9uPjk2PC90aWZmOlhSZXNvbHV0aW9uPgogICAgICAgICA8dGlmZjpPcmllbnRhdGlvbj4xPC90aWZmOk9yaWVudGF0aW9uPgogICAgICAgICA8dGlmZjpZUmVzb2x1dGlvbj45NjwvdGlmZjpZUmVzb2x1dGlvbj4KICAgICAgICAgPGV4aWY6UGl4ZWxYRGltZW5zaW9uPjIyMTwvZXhpZjpQaXhlbFhEaW1lbnNpb24+CiAgICAgICAgIDxleGlmOkNvbG9yU3BhY2U+MTwvZXhpZjpDb2xvclNwYWNlPgogICAgICAgICA8ZXhpZjpQaXhlbFlEaW1lbnNpb24+MTA1PC9leGlmOlBpeGVsWURpbWVuc2lvbj4KICAgICAg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" style="margin-top:-12px"></a>
+          </div>
+          <div class="collapse navbar-collapse bannershadow" id="navbar-ex-collapse">
+            <ul class="nav navbar-nav navbar-right">
+              <li class="active">
+                <a href="#">Home</a>
+              </li>
+              <li>
+                <a href="#contact">Contact<br></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <!--<div style="background-image: url(https://unsplash.imgix.net/photo-1418065460487-3e41a6c84dc5?q=25&amp;fm=jpg&amp;s=127f3a3ccf4356b7f79594e05f6c840e);"
+      class="cover-image smooth">-->
+      <div class="cover-image smooth" style="background-image: url(CoverImages/Squamish1.jpg);">
+        <div class="splash-feedback">
+          <span class="mouse">
+            <span class="fa fa-angle-down"></span>
+          </span>
+          <span class="caption">Scroll</span>
+        </div>
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 text-center">
+            <h1 class="text-inverse noselect bannershadow">
+              <br>
+              <br>
+              <br>Welcome
+              <br>to the&nbsp;
+              <br>Future of Eco-Friendly
+              <br>Construction</h1>
+            <p class="text-inverse"></p>
+            <br>
+            <br>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <h1 class="text-center text-info">Trinity Post &amp; Panel</h1>
+            <h3 class="text-center text-info">Building the Eco-Friendly Home of the Future</h3>
+            <p class="text-left">Trinity Post and Panel is the creator of the patented IPP®️ building system.
+              <br>
+              <br>With our revolutionary new building system, construction of your new home
+              goes from several week process down to a number of days.
+              <br>Our integrated post and panel homes are structured to exceed qualifications
+              set by Energy Star, R-2000 and Leeds, made to provide the most protection
+              and energy savings per square foot of all our competitors.&nbsp;
+              <br>
+              <br>Our&nbsp;structures can be built to meet any design requirements, and
+              can be &nbsp;setup to completion in a number of days. &nbsp; &nbsp; &nbsp;
+              &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+              <br>
+              <br>The following &nbsp;videos will explain the details of our system and
+              introduce you to the setup and features of the Display Home we provided
+              for the 2016 BC Home &amp; Garden show.
+              <br>It will give you and overview on how we can provide such an exemplory
+              product for such an affordable price.</p>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="col-md-12">
+                  <h2 class="text-center text-info">Introduction to IPP©</h2>
+                  <p class="text-center"></p>
+                  <div class="embed-responsive embed-responsive-16by9">
+                    <iframe src="https://player.vimeo.com/video/131046134?color=ffffff&amp;title=0&amp;byline=0&amp;portrait=0" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe>
+                  </div>
+                  <h2 class="text-center text-info">Time-Lapse Setup of the Display Home</h2>
+                  <p class="text-center" contenteditable="true">Hopefully you had a chance to view our Display Home at the Vancouver Home
+                    and Garden Show from February 17th 2016 to February 22th 2016.
+                    <br>In case you missed it, enjoy this Time Lapse video which covers the total
+                    setup of 18 Hours for the main building.</p>
+                  <div class="embed-responsive embed-responsive-16by9">
+                    <iframe src="https://player.vimeo.com/video/155628425?color=ffffff&amp;title=0&amp;byline=0&amp;portrait=0" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe>
+                  </div>
+                  <h2 class="text-center text-info">"Open House" on GlobalTV</h2>
+                  <p class="text-center">GlobalTV Interview with Tyson Kidd, BC Home and Garden Show Manager, inside
+                    the&nbsp;Trinity Post and Panel Display Home.</p>
+                  <div class="embed-responsive embed-responsive-16by9">
+                    <iframe src="https://player.vimeo.com/video/158409367?color=ffffff&amp;title=0&amp;byline=0&amp;portrait=0" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="section" id="ResidentialCommercial">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <h1 class="text-center text-info">Residental ...</h1>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="carousel slide" id="carousel-residental" data-interval="5000" data-ride="carousel">
+                  <div class="carousel-inner">
+                    <div class="item">
+                      <img src="ResidentialImages/sProvoke_Kia_Kaha_UniHeights_Web-2.jpg">
+                    </div>
+                    <div class="item active">
+                      <img src="ResidentialImages/sProvoke_Kia_Kaha_UniHeights_Web-3.jpg">
+                    </div>
+                    <div class="item">
+                      <img src="ResidentialImages/sProvoke_Kia_Kaha_UniHeights_Web-6.jpg">
+                    </div>
+                    <div class="item">
+                      <img src="ResidentialImages/sProvoke_Kia_Kaha_UniHeights_Web-7.jpg">
+                    </div>
+                    <div class="item">
+                      <img src="ResidentialImages/sProvoke_Kia_Kaha_UniHeights_Web-8.jpg">
+                    </div>
+                    <div class="item">
+                      <img src="ResidentialImages/sProvoke_Kia_Kaha_UniHeights_Web-13.jpg">
+                    </div>
+                    <div class="item">
+                      <img src="ResidentialImages/sProvoke_Kia_Kaha_UniHeights_Web-15.jpg">
+                    </div>
+                    <div class="item">
+                      <img src="ResidentialImages/sProvoke_Kia_Kaha_UniHeights_Web-16.jpg">
+                    </div>
+                  </div>
+                  <p></p>
+                  <div class="col-md-6">
+                    <h3 class="text-center text-info">The 'Kitwanga'</h3>
+                    <p>We have a created a 'Hyperlapse' motion corrected virtual walkthrough
+                      of the 'Kitwanga' house for your viewing please. It focuses on the exposed
+                      post and beam construction, but also gives an impression of the solid quality
+                      of the home.</p>
+                  </div>
+                  <div class="embed-responsive embed-responsive-16by9">
+                    <iframe src="https://player.vimeo.com/video/162556076?color=ffffff&amp;title=0&amp;byline=0&amp;portrait=0" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <h1 class="text-center text-info">... or Commercial</h1>
+            <p>Our Patented IPP®️ System is easily adapted to fit your building needs,
+              wether it is for a small get-away cabin in the woods, or your new large
+              and luxurious home in the suburbs.
+              <br>
+              <br>Commercial Developers can choose to build anything from duplexes to lane-way
+              homes or townhouses - the IPP®️ System covers your needs.</p>
+            <div id="carousel-commercial" data-interval="5000" class="carousel slide" data-ride="carousel">
+              <div class="carousel-inner">
+                <div class="item">
+                  <img src="CommercialImages/sACCamera.png">
+                </div>
+                <div class="item">
+                  <img src="CommercialImages/sinterior01.png">
+                </div>
+                <div class="item">
+                  <img src="CommercialImages/sinterior02.png">
+                </div>
+                <div class="item">
+                  <img src="CommercialImages/sELEVATION02.png">
+                </div>
+                <div class="item">
+                  <img src="CommercialImages/sEXTERIOR11.png">
+                </div>
+                <div class="item active">
+                  <img src="CommercialImages/sELEVATION03.png">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <h1 class="text-center text-info">The Trinity IPP®️ System with Charmaine and Ken</h1>
+            <p class="text-center">Join Charmaine Lang, Senior Account Executive, and Ken Harper, CEO, as
+              they introduce Michael to the Trinity Post &amp; Panel Display Home and
+              Building System.</p>
+              <div class="embed-responsive embed-responsive-16by9">
+                <iframe src="https://player.vimeo.com/video/156854530?color=ffffff&amp;title=0&amp;byline=0&amp;portrait=0" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe>
+              </div>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+    <div class="section">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <h1 class="text-center text-info">Features &amp; Benefits</h1>
+            <h3 class="text-center text-info">IPP®️</h3>
+            <p>IPP® Integrated Post and Panel is a construction system that integrates
+              post and beam construction with structural insulated panels or SIPS. The
+              IPP® system consists of a post and beam timber frame, innovative sealing
+              system and polyurethane insulated panels. This combined building system
+              is stronger than conventional construction, Energy star rated and very
+              cost effective. IPP® is the only system of its kind anywhere in the world
+              and is only available at Trinity.</p>
+          </div>
+          <div class="col-md-6">
+            <div id="carousel-example" data-interval="false" class="carousel slide" data-ride="carousel">
+              <div class="carousel-inner">
+                <div class="item">
+                  <img src="Images/Panel.png">
+                </div>
+                <div class="item active">
+                  <img src="Images/ACCamera.jpg">
+                </div>
+                <div class="item">
+                  <img src="Images/EXPOSED BEAMS WITH DECKING.png">
+                </div>
+                <div class="item">
+                  <img src="Images/infrared-stick-built.jpg">
+                </div>
+                <div class="item">
+                  <img src="Images/infrared-thermocore.jpg">
+                </div>
+                <div class="item">
+                  <img src="Images/Unknown.jpeg">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <h3 class="text-center text-info">Patented System</h3>
+            <p>This new and innovative system is exclusive to Trinity Post and Panel.
+              IPP® or Integrated Post and Panel® is one of the only patented construction
+              systems in the world. This all-encompassing construction system consists
+              of an engineered Post and Beam frame with Trinity’s exclusive notch and
+              sealing system. &nbsp;</p>
+          </div>
+          <div class="col-md-6">
+            <h3 class="text-center text-info">Design Flexibility &amp; Possibilities</h3>
+            <p>​Trinity’s IPP shell is a simple, effective unique way to build. IPP®
+              provides the benefits of post and beam house with the cost of traditional
+              framing. IPP® comes out of the box with vaulted ceilings and exposed timbers
+              throughout. Different arrangements are available depending on the client’s
+              requirements or taste. IPP® has the ability to add an addition or add doors
+              and windows without having to totally reframe or restructure the wall.
+              Simply build out or cut the window or door out of the panel and insert
+              the framing material.
+              <br>
+            </p>Trinity IPP®️ is compatible with, but not limited to:
+            <ul class="text-left">
+              <li>Condos</li>
+              <li>Multi-level housing units</li>
+              <li>Lane way housing</li>
+              <li>Single-family dwellings</li>
+              <li>Resort Developments</li>
+              <li>Tiny Homes</li>
+              <li>Duples, Four-plex</li>
+              <li>Commercial applications</li>
+              <li>Custom Home building</li>
+              <li>Developments</li>
+              <li>Insurance burn replacements</li>
+            </ul>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <h3 class="text-center text-info">Fast &amp; Easy Assembly</h3>
+            <p>​IPP® is designed to be a fast and efficient way to build. To achieve
+              this, houses are designed in a 3D CAD environment. After the design and
+              engineering are complete a CNC machine precisely cuts out the pieces. The
+              pieces are then labeled and shipped to site. These steps ensure ease of
+              assembly. IPP® units construct in considerably less time when compared
+              to conventional building methods. Lockup can be achieved in days, not weeks.
+              Limited onsite cutting minimizes onsite waste and the need for a dumpster.
+              Trinity’s IPP® is a simple easy build design.</p>
+          </div>
+          <div class="col-md-6">
+            <h3 class="text-center text-info" contenteditable="true">Affordable</h3>
+            <p>​The IPP® system is to be mass-produced in a plant by a team of experts
+              utilizing state of the art computer controlled Equipment. The timbers used,
+              are purchased in bulk locally and processed in house by Trinity personnel.
+              This “mass-production” model allows Trinity Post and Panel to be competitive
+              in an evolving marketplace. Making our products accessible to everyone,
+              and helping to perpetuate a greener way to build.</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <h3 class="text-center text-info">Reduced Construction Time</h3>
+            <p>The Integrated Post and Panel® system is comprised of two parts, the posts/beams
+              and the panels. The assembly of the parts is much like assembling a building
+              block set. Simply follow the directions and the labels attached to the
+              pieces. By pre-engineering everything Trinity takes the guess work out
+              of building, its just a matter of set up. This method allows Trinity structures
+              to be built in reduced time when compared to conventional methods.</p>
+          </div>
+          <div class="col-md-6">
+            <h3 class="text-center text-info">Shortened Exposure to the Elements</h3>
+            <p>By assembling the shell rapidly, exposure time to the elements is greatly
+              reduced. The risk of wood rot and mildew is minimized. And crews are able
+              to work inside sooner, making the site secure and keeping the interior
+              materials dry.</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <h3 class="text-center text-info">No Job Site Waste</h3>
+            <p>The IPP® system is manufactured in a controlled environment thereby reducing
+              waste on the job site. This means less cleanup and higher productivity.</p>
+          </div>
+          <div class="col-md-6">
+            <h3 class="text-center text-info">Recyclable</h3>
+            <p>All materials utilized in the Trinity system are fully recyclable. The
+              OSB can be broken down and burned for energy in the plant. The polyurethane
+              can be broken down and re-introduced into the panel making process. No
+              other building system offers this advantage.</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <h3 class="text-center text-info">Vaulted Ceilings</h3>
+            <p>Although IPP® units are built without framed trusses, IPP® can utilize
+              them if the client so desires. The IPP® rafter system allows for the insulated
+              panels to sit directly on top of the beams. This gives a cathedral vaulted
+              ceiling finish in all structures. Only IPP® offers custom, vaulted ceilings
+              at no additional cost.</p>
+            <img src="Images/Vaulted.png" class="img-responsive">
+          </div>
+          <div class="col-md-6">
+            <h3 class="text-center text-info">Pre-Planned Electrical</h3>
+            <p>The insulated panels arrive pre installed with electrical conduits and
+              boxes. Having these items pre installed makes wiring the structure easier
+              than in conventional construction. No drilling or screwing required, simply
+              fish the wires through the conduits, connect and install fixtures. Conduits
+              and boxes are installed with insulation surrounding on all sides, this
+              eliminates potential for drafts or air leakage.</p>
+            <img src="Images/Electrical.png" class="img-responsive">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <h3 class="text-center text-info">Greatly Reduced Trim Work</h3>
+            <p>The triple notch groove that is exclusive to the Trinity IPP® system allows
+              for the post to accept the panel, Drywall and siding. By allowing the drywall
+              to tuck into this groove it reduces the trim work vastly. No crown moldings
+              required reducing material costs on finishing. Exterior siding tucks into
+              grooves on the exterior of posts and beams, minimizing the need for trim.
+              Thus providing a fast neat and tidy appearance.</p>
+          </div>
+          <div class="col-md-6">
+            <h3 class="text-center text-info">Overall Higher Value</h3>
+            <p>​Timber frame and custom post and beam style housing traditionally appraises
+              at a higher value than framed houses. This truth combined with specifications
+              that exceed all building codes, IPP® structures fetch a higher appraised
+              value when compared to comparable building techniques. Trinity’s IPP® system
+              is the only system available that increases in equity once built.</p>
+            <img src="Images/HigherValue.png" class="img-responsive">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <h3 class="text-center text-info">Highest R-Value 7.5 per inch</h3>
+            <p>​The polyurethane insulation used in the IPP® system is the best in the
+              industry. Spray foam insulators use the same material when spraying attics
+              and foundations. The IPP® panels are injected with polyurethane at the
+              factory. No structure is required in the panels because of the timber frame.
+              By doing this Trinity virtually eliminates thermal bridging across walls.
+              Creating a highly efficient building envelope.</p>
+          </div>
+          <div class="col-md-6">
+            <h3 class="text-center text-info">Greatly reduced energy cost</h3>
+            <p>​Timber frame and custom post and beam style housing traditionally appraises
+              at a higher value than framed houses. This truth combined with specifications
+              that exceed all building codes, IPP® structures fetch a higher appraised
+              value when compared to comparable building techniques. Trinity’s IPP® system
+              is the only system available that increases in equity once built.</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <h3 class="text-center text-info">Utilizes less timber than traditional framing</h3>
+            <p>Trinity structures are an Eco friendly alternative to traditional construction.
+              The IPP® system uses less wood than traditional framing and are more energy
+              efficient once built.</p>
+          </div>
+          <div class="col-md-6">
+            <h3 class="text-center text-info">Hypoallergenic/Pest Resistant/No off gassing</h3>
+            <p>The insulation used in the IPP® wall panels is a hypoallergenic substance.
+              Polyurethane is dense, non-toxic, material. Wall panels filled with polyurethane
+              have no space or material to support pest infestation, and provide no off
+              gassing.
+              <br>
+            </p>
+          </div>
+          <a href="https://en.wikipedia.org/wiki/Indoor_air_quality">
+        </a>
+        </div>
+        <a href="https://en.wikipedia.org/wiki/Indoor_air_quality"></a>
+      </div>
+      <a href="https://en.wikipedia.org/wiki/Indoor_air_quality">
+    </a>
+    </div>
+    <div class="section">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 text-center" id="contact">
+            <h1 class="text-center text-info">Contact Us</h1>
+            <div class="row">
+              <div class="col-md-6 text-left">
+                <h3 class="text-info text-left">Office Location</h3>
+                <p class="text-left">4994 Donslequa Dr
+                  <br>108 Mile Ranch, BC
+                  <br>
+                </p>Phone:
+                <a href="callto:+1-250-791-0028">+1 (250) 791-0028</a>
+                <br>Email:
+                <a href="mailto:info@trinitypostandpanel.com">info@trinitypostandpanel.com</a>
+                <h3 class="text-info text-left">Mailing Address</h3>
+                <p class="text-left">P.O. Box 1898
+                  <br>100 Mile House, BC
+                  <br>V0K 2E0
+                  <br>Canada&nbsp;</p>
+              </div>
+              <div class="col-md-6 text-center">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2471.4986778392845!2d-121.33004314854448!3d51.72391370257016!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x53806899287b2fef%3A0x3ad0f04665caad30!2s4994+Donsleequa+Rd%2C+100+Mile+House%2C+BC+V0K+2E1!5e0!3m2!1sen!2sca!4v1455688996421" allowfullscreen="" width="300" height="300" frameborder="0" style="border:0"></iframe>
+              </div>
+            </div>
+            <br>
+            <a class="btn btn-primary" href="#">Top</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <h6 class="text-primary text-right">Copyright @2016-2017 Trinity Post &amp; Panel Inc.
+              <br>All Rights Reserved</h6>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+</script>
+  
 
-	<div id='Copyright' class='haloWhiteTight' style='position:fixed; bottom:3%; width:54%; text-align: center'>
-		<span class="CopyrightFont" style="position: absolute; left:10%; bottom:3%;">
-			Copyright &#169; 2015 Trinity Post &#38; Panel Inc. &#174; All Rights Reserved.
-		</span>
-
-		<span class="CopyrightFont" style="position: absolute; right:-80%; bottom:3%">
-			+1-250-791-0028 / <a href="mailto:info@trinitypostandpanel.com" style="color:blue; text-decoration: none">info&#64;trinitypostandpanel.com</a>
-		</span>
-	</div>
-
-	<script type="text/javascript">
-		$(document).ready(function()
-		{
-			PiwikTrackContent();
-			Init();
-		});
-	 </script>
-	 
-</body>
-</html>
+</body></html>
